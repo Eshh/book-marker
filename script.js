@@ -68,7 +68,18 @@ function fetchBookmarks() {
   }
   buildBookmarks();
 }
+
+function deleteBookmark(url) {
+  bookmarks.forEach((each, i) => {
+    if (each.url === url) {
+      bookmarks.splice(i, 1);
+    }
+  });
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  buildBookmarks();
+}
 function buildBookmarks() {
+  bookmarksContainer.textContent = "";
   bookmarks.forEach((each) => {
     const { name, url } = each;
     const item = document.createElement("div");
